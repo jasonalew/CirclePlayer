@@ -12,8 +12,7 @@
 
 @interface JALCircleView()
 
-@property(nonatomic, strong)CAShapeLayer *circleShape;
-@property(nonnull, strong)NSArray *points;
+@property (nonatomic, strong) CAShapeLayer *circleShape;
 @property (nonatomic) CGFloat radius;
 @property (nonatomic) int numPoints;
 
@@ -37,15 +36,12 @@ static CGFloat const minLimit = 1.0e-5;
     return self;
 }
 - (void)setup {
-    _circleShape = [[CAShapeLayer alloc]init];
-    _fillColor = [UIColor jal_cream];
-    _strokeColor = [UIColor jal_orange];
-    _lineWidth = 10.0;
-    _radius = CGRectGetWidth(self.frame)/2.0;
-    _numPoints = 10;
-    _circleShape.lineWidth = _lineWidth;
-    _circleShape.strokeColor = [_strokeColor CGColor];
-    _circleShape.fillColor = [_fillColor CGColor];
+    self.circleShape = [[CAShapeLayer alloc]init];
+    self.fillColor = [UIColor jal_cream];
+    self.strokeColor = [UIColor jal_orange];
+    self.lineWidth = 10.0;
+    self.radius = CGRectGetWidth(self.frame)/2.0;
+    self.numPoints = 10;
     [self makeCirclePath];
 }
 
@@ -130,7 +126,7 @@ static CGFloat const minLimit = 1.0e-5;
     self.circleShape.strokeColor = strokeColor.CGColor;
 }
 
-- (void)setStrokeWidth:(CGFloat)lineWidth {
+- (void)setLineWidth:(CGFloat)lineWidth {
     self.circleShape.lineWidth = lineWidth;
 }
 

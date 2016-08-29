@@ -9,10 +9,13 @@
 #import "JALViewController.h"
 #import "JALCircleView.h"
 #import "UIColor+JALCustom.h"
+#import "JALBasePoint.h"
 
 static CGFloat const radius = 40;
 
 @interface JALViewController ()
+
+@property (nonatomic, strong) NSMutableArray *points;
 
 @end
 
@@ -31,19 +34,24 @@ static CGFloat const radius = 40;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    CGRect circleRect = CGRectMake(self.view.center.x - radius , self.view.center.y - radius, radius * 2.0, radius * 2.0);
+    CGRect circleRect = CGRectMake(CGRectGetMidX(self.view.frame) - radius,
+                                   CGRectGetMidY(self.view.frame) - radius,
+                                   radius * 2.0,
+                                   radius * 2.0);
     JALCircleView *circleView = [[JALCircleView alloc]initWithFrame:circleRect];
     [self.view addSubview:circleView];
+    [self loadPoints:circleView.points];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)loadPoints:(NSArray *)points {
+    if (self.points == nil) {
+        self.points = [[NSMutableArray alloc]init];
+    }
+    for (NSValue *point in points) {
+        JALBasePoint *basePoint = [[JALBasePoint alloc]init];
+        basePoint.basePoint = [point CGPointValue];
+        [self.points addObject:basePoint];
+    }
 }
-*/
 
 @end

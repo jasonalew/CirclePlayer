@@ -12,5 +12,6 @@
 @property (nonatomic, strong) UIColor *fillColor;
 @property (nonatomic, strong) UIColor *strokeColor;
 @property (nonatomic) CGFloat lineWidth;
+@property (nonatomic, strong) NSArray *points;
 
 @end
