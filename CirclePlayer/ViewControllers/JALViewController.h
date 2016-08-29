@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  JALViewController.h
 //  CirclePlayer
 //
 //  Created by Jason Lew on 8/27/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface JALViewController : UIViewController
 
 @end
-

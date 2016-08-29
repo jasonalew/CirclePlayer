@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550763E01D73349800B9BBA8 /* JALConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 550763DF1D73349800B9BBA8 /* JALConstants.m */; };
+		550763ED1D733A0000B9BBA8 /* UIColor+JALCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 550763EC1D733A0000B9BBA8 /* UIColor+JALCustom.m */; };
+		550763F01D738A7700B9BBA8 /* JALPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 550763EF1D738A7700B9BBA8 /* JALPoint.m */; };
+		550763F21D73C11200B9BBA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 550763F11D73C11200B9BBA8 /* Main.storyboard */; };
 		5548FD9F1D72615000856D02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548FD9E1D72615000856D02 /* main.m */; };
 		5548FDA21D72615000856D02 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548FDA11D72615000856D02 /* AppDelegate.m */; };
-		5548FDA51D72615000856D02 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548FDA41D72615000856D02 /* ViewController.m */; };
-		5548FDA81D72615000856D02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5548FDA61D72615000856D02 /* Main.storyboard */; };
 		5548FDAA1D72615000856D02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5548FDA91D72615000856D02 /* Assets.xcassets */; };
 		5548FDAD1D72615000856D02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5548FDAB1D72615000856D02 /* LaunchScreen.storyboard */; };
 		5548FDB81D72615000856D02 /* CirclePlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548FDB71D72615000856D02 /* CirclePlayerTests.m */; };
+		5548FDC61D7261A800856D02 /* JALViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548FDC51D7261A800856D02 /* JALViewController.m */; };
+		5548FDC91D7261C100856D02 /* JALCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548FDC81D7261C100856D02 /* JALCircleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +31,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		550763DE1D73349800B9BBA8 /* JALConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JALConstants.h; path = Helpers/JALConstants.h; sourceTree = "<group>"; };
+		550763DF1D73349800B9BBA8 /* JALConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JALConstants.m; path = Helpers/JALConstants.m; sourceTree = "<group>"; };
+		550763EB1D733A0000B9BBA8 /* UIColor+JALCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+JALCustom.h"; path = "Helpers/UIColor+JALCustom.h"; sourceTree = "<group>"; };
+		550763EC1D733A0000B9BBA8 /* UIColor+JALCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+JALCustom.m"; path = "Helpers/UIColor+JALCustom.m"; sourceTree = "<group>"; };
+		550763EE1D738A7700B9BBA8 /* JALPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JALPoint.h; path = Helpers/JALPoint.h; sourceTree = "<group>"; };
+		550763EF1D738A7700B9BBA8 /* JALPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JALPoint.m; path = Helpers/JALPoint.m; sourceTree = "<group>"; };
+		550763F11D73C11200B9BBA8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5548FD9A1D72615000856D02 /* CirclePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CirclePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5548FD9E1D72615000856D02 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5548FDA01D72615000856D02 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5548FDA11D72615000856D02 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5548FDA31D72615000856D02 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5548FDA41D72615000856D02 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		5548FDA71D72615000856D02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5548FDA91D72615000856D02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5548FDAC1D72615000856D02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5548FDAE1D72615000856D02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5548FDB31D72615000856D02 /* CirclePlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CirclePlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5548FDB71D72615000856D02 /* CirclePlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CirclePlayerTests.m; sourceTree = "<group>"; };
 		5548FDB91D72615000856D02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5548FDC41D7261A800856D02 /* JALViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JALViewController.h; path = ViewControllers/JALViewController.h; sourceTree = "<group>"; };
+		5548FDC51D7261A800856D02 /* JALViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JALViewController.m; path = ViewControllers/JALViewController.m; sourceTree = "<group>"; };
+		5548FDC71D7261C100856D02 /* JALCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JALCircleView.h; path = Views/JALCircleView.h; sourceTree = "<group>"; };
+		5548FDC81D7261C100856D02 /* JALCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JALCircleView.m; path = Views/JALCircleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +72,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		550763DD1D73347200B9BBA8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				550763DE1D73349800B9BBA8 /* JALConstants.h */,
+				550763DF1D73349800B9BBA8 /* JALConstants.m */,
+				550763EB1D733A0000B9BBA8 /* UIColor+JALCustom.h */,
+				550763EC1D733A0000B9BBA8 /* UIColor+JALCustom.m */,
+				550763EE1D738A7700B9BBA8 /* JALPoint.h */,
+				550763EF1D738A7700B9BBA8 /* JALPoint.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		5548FD911D72615000856D02 = {
 			isa = PBXGroup;
 			children = (
@@ -81,15 +106,16 @@
 		5548FD9C1D72615000856D02 /* CirclePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				550763DD1D73347200B9BBA8 /* Helpers */,
+				5548FDC31D72618E00856D02 /* Views */,
+				5548FDC21D72618600856D02 /* ViewControllers */,
 				5548FDA01D72615000856D02 /* AppDelegate.h */,
 				5548FDA11D72615000856D02 /* AppDelegate.m */,
-				5548FDA31D72615000856D02 /* ViewController.h */,
-				5548FDA41D72615000856D02 /* ViewController.m */,
-				5548FDA61D72615000856D02 /* Main.storyboard */,
 				5548FDA91D72615000856D02 /* Assets.xcassets */,
 				5548FDAB1D72615000856D02 /* LaunchScreen.storyboard */,
 				5548FDAE1D72615000856D02 /* Info.plist */,
 				5548FD9D1D72615000856D02 /* Supporting Files */,
+				550763F11D73C11200B9BBA8 /* Main.storyboard */,
 			);
 			path = CirclePlayer;
 			sourceTree = "<group>";
@@ -109,6 +135,24 @@
 				5548FDB91D72615000856D02 /* Info.plist */,
 			);
 			path = CirclePlayerTests;
+			sourceTree = "<group>";
+		};
+		5548FDC21D72618600856D02 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5548FDC41D7261A800856D02 /* JALViewController.h */,
+				5548FDC51D7261A800856D02 /* JALViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5548FDC31D72618E00856D02 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5548FDC71D7261C100856D02 /* JALCircleView.h */,
+				5548FDC81D7261C100856D02 /* JALCircleView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +199,7 @@
 		5548FD921D72615000856D02 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = JAL;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Jason Lew";
 				TargetAttributes = {
@@ -191,9 +236,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				550763F21D73C11200B9BBA8 /* Main.storyboard in Resources */,
 				5548FDAD1D72615000856D02 /* LaunchScreen.storyboard in Resources */,
 				5548FDAA1D72615000856D02 /* Assets.xcassets in Resources */,
-				5548FDA81D72615000856D02 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,9 +256,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5548FDA51D72615000856D02 /* ViewController.m in Sources */,
+				550763ED1D733A0000B9BBA8 /* UIColor+JALCustom.m in Sources */,
 				5548FDA21D72615000856D02 /* AppDelegate.m in Sources */,
+				5548FDC61D7261A800856D02 /* JALViewController.m in Sources */,
+				5548FDC91D7261C100856D02 /* JALCircleView.m in Sources */,
+				550763F01D738A7700B9BBA8 /* JALPoint.m in Sources */,
 				5548FD9F1D72615000856D02 /* main.m in Sources */,
+				550763E01D73349800B9BBA8 /* JALConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,14 +285,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5548FDA61D72615000856D02 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5548FDA71D72615000856D02 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5548FDAB1D72615000856D02 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -402,6 +443,7 @@
 				5548FDBE1D72615000856D02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5548FDBF1D72615000856D02 /* Build configuration list for PBXNativeTarget "CirclePlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +452,7 @@
 				5548FDC11D72615000856D02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
