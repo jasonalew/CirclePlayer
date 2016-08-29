@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface JALViewController : UIViewController
+@interface JALViewController : UIViewController<AVAudioPlayerDelegate>
 
 @end

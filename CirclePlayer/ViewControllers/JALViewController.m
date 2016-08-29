@@ -22,6 +22,8 @@ static double const animationDuration = 3;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic) NSTimeInterval animateStartTime;
 @property (nonatomic, strong) JALCircleView *circleView;
+@property (nonatomic, strong) AVAudioPlayer * audioPlayer;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 @end
 
@@ -31,6 +33,17 @@ static double const animationDuration = 3;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor jal_orange];
     self.animateStartTime = 0;
+    
+    // Add the circle view
+    CGRect circleRect = CGRectMake(CGRectGetMidX(self.view.frame) - radius,
+                                   CGRectGetMidY(self.view.frame) - radius,
+                                   radius * 2.0,
+                                   radius * 2.0);
+    self.circleView = [[JALCircleView alloc]initWithFrame:circleRect];
+    [self.view addSubview:self.circleView];
+    [self loadPoints:self.circleView.points];
+    [self setupPlayButton];
+    [self setupAudioPlayer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,19 +53,15 @@ static double const animationDuration = 3;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    CGRect circleRect = CGRectMake(CGRectGetMidX(self.view.frame) - radius,
-                                   CGRectGetMidY(self.view.frame) - radius,
-                                   radius * 2.0,
-                                   radius * 2.0);
-    self.circleView = [[JALCircleView alloc]initWithFrame:circleRect];
-    [self.view addSubview:self.circleView];
-    [self loadPoints:self.circleView.points];
-    [self startDisplayLink];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self stopDisplayLink];
+}
+
+- (void)setupPlayButton {
+    self.playButton.layer.zPosition = 100;
 }
 
 - (void)loadPoints:(NSArray *)points {
@@ -68,7 +77,18 @@ static double const animationDuration = 3;
     }
 }
 
-# pragma mark - Animation
+#pragma mark - Actions
+- (IBAction)playButtonWasTapped:(id)sender {
+    if (self.audioPlayer.isPlaying) {
+        [self pauseAudio];
+    } else {
+        [self playAudio];
+    }
+    [self updatePlayButtonImage];
+}
+
+
+#pragma mark - Animation
 - (void)updateCircle:(CADisplayLink *)sender {
     if (self.animateStartTime == 0 || CACurrentMediaTime() - animationDuration >= self.animateStartTime) {
         self.animateStartTime = CACurrentMediaTime();
@@ -102,8 +122,10 @@ static double const animationDuration = 3;
 - (void)startDisplayLink {
     if (self.displayLink == nil) {
         self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCircle:)];
+        [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    } else {
+        [self pauseDisplayLink:NO];
     }
-    [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 }
 
 - (void)pauseDisplayLink:(BOOL)pause {
@@ -113,6 +135,34 @@ static double const animationDuration = 3;
 - (void)stopDisplayLink {
     [self.displayLink invalidate];
     self.displayLink = nil;
+}
+
+#pragma mark - Audio Player
+- (void)setupAudioPlayer {
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"shakuhachi" ofType:@"mp3"]];
+    NSError *error;
+    self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
+    if (error) {
+        NSLog(@"Audio player error: %@", error.localizedDescription);
+    } else {
+        self.audioPlayer.delegate = self;
+        [self.audioPlayer prepareToPlay];
+    }
+}
+
+- (void)playAudio {
+    [self.audioPlayer play];
+    [self startDisplayLink];
+}
+
+- (void)pauseAudio {
+    [self.audioPlayer pause];
+    [self pauseDisplayLink:YES];
+}
+
+- (void)updatePlayButtonImage {
+    UIImage *playImage = self.audioPlayer.isPlaying ? [UIImage imageNamed:@"pauseButtonRound"] : [UIImage imageNamed:@"playButtonRound"];
+    [self.playButton setImage:playImage forState:UIControlStateNormal];
 }
 
 @end

@@ -12,6 +12,7 @@
 		550763F01D738A7700B9BBA8 /* JALPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 550763EF1D738A7700B9BBA8 /* JALPoint.m */; };
 		550763F21D73C11200B9BBA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 550763F11D73C11200B9BBA8 /* Main.storyboard */; };
 		550763F51D740D9B00B9BBA8 /* JALBasePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 550763F41D740D9B00B9BBA8 /* JALBasePoint.m */; };
+		550763F81D74E93200B9BBA8 /* shakuhachi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 550763F71D74E93200B9BBA8 /* shakuhachi.mp3 */; };
 		5548FD9F1D72615000856D02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548FD9E1D72615000856D02 /* main.m */; };
 		5548FDA21D72615000856D02 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5548FDA11D72615000856D02 /* AppDelegate.m */; };
 		5548FDAA1D72615000856D02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5548FDA91D72615000856D02 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		550763F11D73C11200B9BBA8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		550763F31D740D9B00B9BBA8 /* JALBasePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JALBasePoint.h; path = Helpers/JALBasePoint.h; sourceTree = "<group>"; };
 		550763F41D740D9B00B9BBA8 /* JALBasePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JALBasePoint.m; path = Helpers/JALBasePoint.m; sourceTree = "<group>"; };
+		550763F71D74E93200B9BBA8 /* shakuhachi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = shakuhachi.mp3; path = Media/shakuhachi.mp3; sourceTree = "<group>"; };
 		5548FD9A1D72615000856D02 /* CirclePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CirclePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5548FD9E1D72615000856D02 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5548FDA01D72615000856D02 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		550763F61D74E68E00B9BBA8 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				550763F71D74E93200B9BBA8 /* shakuhachi.mp3 */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
 		5548FD911D72615000856D02 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +121,7 @@
 		5548FD9C1D72615000856D02 /* CirclePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				550763F61D74E68E00B9BBA8 /* Media */,
 				550763DD1D73347200B9BBA8 /* Helpers */,
 				5548FDC31D72618E00856D02 /* Views */,
 				5548FDC21D72618600856D02 /* ViewControllers */,
@@ -242,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				550763F21D73C11200B9BBA8 /* Main.storyboard in Resources */,
+				550763F81D74E93200B9BBA8 /* shakuhachi.mp3 in Resources */,
 				5548FDAD1D72615000856D02 /* LaunchScreen.storyboard in Resources */,
 				5548FDAA1D72615000856D02 /* Assets.xcassets in Resources */,
 			);

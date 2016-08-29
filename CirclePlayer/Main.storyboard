@@ -16,12 +16,35 @@
                     <view key="view" contentMode="scaleToFill" id="1aj-NF-jYo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcY-ta-V4V">
+                                <rect key="frame" x="270" y="270" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="NHD-EX-96c"/>
+                                    <constraint firstAttribute="width" constant="60" id="SEN-gV-MV0"/>
+                                </constraints>
+                                <state key="normal" image="playButtonRound"/>
+                                <connections>
+                                    <action selector="playButtonWasTapped:" destination="UPL-vw-ao3" eventType="touchUpInside" id="n64-pw-bYc"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WcY-ta-V4V" firstAttribute="centerX" secondItem="1aj-NF-jYo" secondAttribute="centerX" id="VS7-3g-MNJ"/>
+                            <constraint firstItem="WcY-ta-V4V" firstAttribute="centerY" secondItem="1aj-NF-jYo" secondAttribute="centerY" id="lbt-z3-DpD"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="playButton" destination="WcY-ta-V4V" id="n6U-u3-MAC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56p-sa-SC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="418" y="393"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="playButtonRound" width="44" height="44"/>
+    </resources>
 </document>
