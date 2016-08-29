@@ -12,7 +12,6 @@
 
 @interface JALCircleView()
 
-@property (nonatomic, strong) CAShapeLayer *circleShape;
 @property (nonatomic) CGFloat radius;
 @property (nonatomic) int numPoints;
 
@@ -38,10 +37,10 @@ static CGFloat const minLimit = 1.0e-5;
 - (void)setup {
     self.circleShape = [[CAShapeLayer alloc]init];
     self.fillColor = [UIColor jal_cream];
-    self.strokeColor = [UIColor jal_orange];
-    self.lineWidth = 10.0;
+    self.strokeColor = [UIColor jal_ltOrange];
+    self.lineWidth = 14.0;
     self.radius = CGRectGetWidth(self.frame)/2.0;
-    self.numPoints = 10;
+    self.numPoints = 7;
     [self makeCirclePath];
 }
 

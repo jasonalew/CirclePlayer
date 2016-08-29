@@ -11,11 +11,11 @@
 @implementation UIColor (JALCustom)
 
 + (UIColor *)jal_orange {
-    return [UIColor colorWithHue:0.12 saturation:0.75 brightness:0.9 alpha:1.0];
+    return [UIColor colorWithHue:0.11 saturation:0.45 brightness:0.94 alpha:1.0];
 }
 
 + (UIColor *)jal_ltOrange {
-    return [UIColor colorWithHue:0.12 saturation:0.6 brightness:0.9 alpha:1.0];
+    return [UIColor colorWithHue:0.11 saturation:0.36 brightness:0.94 alpha:1.0];
 }
 
 + (UIColor *)jal_yellow {
@@ -23,7 +23,7 @@
 }
 
 + (UIColor *)jal_cream {
-    return [UIColor colorWithHue:0.12 saturation:0.25 brightness:1.0 alpha:1.0];
+    return [UIColor colorWithHue:0.11 saturation:0.14 brightness:1.0 alpha:1.0];
 }
 
 @end
