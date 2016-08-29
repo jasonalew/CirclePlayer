@@ -36,12 +36,13 @@ static CGFloat const minLimit = 1.0e-5;
 }
 - (void)setup {
     self.circleShape = [[CAShapeLayer alloc]init];
-    self.fillColor = [UIColor jal_cream];
+    self.fillColor = [UIColor whiteColor];
     self.strokeColor = [UIColor jal_ltOrange];
     self.lineWidth = 14.0;
     self.radius = CGRectGetWidth(self.frame)/2.0;
-    self.numPoints = 7;
+    self.numPoints = 8;
     [self makeCirclePath];
+    self.userInteractionEnabled = NO;
 }
 
 - (void)makeCirclePath {
