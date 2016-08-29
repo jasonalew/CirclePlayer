@@ -40,7 +40,7 @@ static CGFloat const minLimit = 1.0e-5;
     self.strokeColor = [UIColor jal_ltOrange];
     self.lineWidth = 14.0;
     self.radius = CGRectGetWidth(self.frame)/2.0;
-    self.numPoints = 8;
+    self.numPoints = 9;
     [self makeCirclePath];
     self.userInteractionEnabled = NO;
 }
