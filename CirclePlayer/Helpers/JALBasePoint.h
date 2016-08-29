@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface JALBasePoint : NSObject
-@property(nonatomic) CGPoint basePoint;
-@property(nonatomic) CGPoint destinationPoint;
+@property (nonatomic) CGPoint basePoint;
+@property (nonatomic) CGPoint destinationPoint;
+@property (nonatomic) CGPoint currentPoint;
+@property (nonatomic) CGPoint incrementBy;
 @end

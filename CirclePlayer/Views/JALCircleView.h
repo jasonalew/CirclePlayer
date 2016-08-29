@@ -13,5 +13,8 @@
 @property (nonatomic, strong) UIColor *strokeColor;
 @property (nonatomic) CGFloat lineWidth;
 @property (nonatomic, strong) NSArray *points;
+@property (nonatomic, strong) CAShapeLayer *circleShape;
+
+- (UIBezierPath *)smoothPathWithPoints:(NSArray *) points;
 
 @end
