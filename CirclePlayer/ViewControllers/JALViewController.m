@@ -61,7 +61,10 @@ static double const animationDuration = 3;
 }
 
 - (void)setupPlayButton {
-    self.playButton.layer.zPosition = 100;
+    // Make sure the play button is on top
+    self.playButton.layer.zPosition = 1000;
+    
+    [self.playButton setTintColor:[UIColor jal_orange]];
 }
 
 - (void)loadPoints:(NSArray *)points {
