@@ -13,7 +13,7 @@
 #import "JALPoint.h"
 
 static CGFloat const radius = 56;
-static CGFloat const randomRadiusLimit = 7;
+static CGFloat const randomRadiusLimit = 6;
 static double const animationDuration = 3;
 
 @interface JALViewController ()
@@ -22,8 +22,11 @@ static double const animationDuration = 3;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic) NSTimeInterval animateStartTime;
 @property (nonatomic, strong) JALCircleView *circleView;
+@property (nonatomic) BOOL shouldReset;
+@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) AVAudioPlayer * audioPlayer;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end
 
@@ -44,6 +47,7 @@ static double const animationDuration = 3;
     [self loadPoints:self.circleView.points];
     [self setupPlayButton];
     [self setupAudioPlayer];
+    self.shouldReset = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +62,7 @@ static double const animationDuration = 3;
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self stopDisplayLink];
+    [self cancelTimer];
 }
 
 - (void)setupPlayButton {
@@ -95,7 +100,11 @@ static double const animationDuration = 3;
 - (void)updateCircle:(CADisplayLink *)sender {
     if (self.animateStartTime == 0 || CACurrentMediaTime() - animationDuration >= self.animateStartTime) {
         self.animateStartTime = CACurrentMediaTime();
-        [self makeDestinationPoints];
+        if (!self.shouldReset) {
+            [self makeDestinationPoints];
+        } else {
+            [self resetCircle];
+        }
     }
     NSMutableArray *newPoints = [[NSMutableArray alloc]init];
     for (JALBasePoint *point in self.points) {
@@ -105,7 +114,7 @@ static double const animationDuration = 3;
     
     self.circleView.circleShape.path = [[self.circleView smoothPathWithPoints:newPoints]CGPath];
     newPoints = nil;
-    
+    [self updateTimeLabel];
 }
 
 - (CGPoint)findIncrementForBasePoint:(CGPoint)basePoint toDestinationPoint:(CGPoint)destinationPoint withDuration:(NSTimeInterval)duration {
@@ -116,10 +125,32 @@ static double const animationDuration = 3;
 }
 
 - (void)makeDestinationPoints {
+    [self makeNewDestinationPointsWithReset:NO];
+}
+
+- (void)makeNewDestinationPointsWithReset:(BOOL)reset {
     for (JALBasePoint *point in self.points) {
-        point.destinationPoint = [JALPoint randomPointInCircleWithCenter:point.basePoint radius:randomRadiusLimit];
+        if (reset) {
+            point.destinationPoint = point.basePoint;
+        } else {
+            point.destinationPoint = [JALPoint randomPointInCircleWithCenter:point.basePoint radius:randomRadiusLimit];
+        }
+        
         point.incrementBy = [self findIncrementForBasePoint:point.currentPoint toDestinationPoint:point.destinationPoint withDuration:animationDuration];
     }
+}
+
+- (void)resetCircle {
+    [self makeNewDestinationPointsWithReset:YES];
+    if (self.timer == nil) {
+        self.timer = [NSTimer timerWithTimeInterval:animationDuration target:self selector:@selector(stopDisplayLink) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)updateTimeLabel {
+    int minutes = (int)self.audioPlayer.currentTime/60;
+    int seconds = (int)self.audioPlayer.currentTime % 60;
+    self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
 }
 
 - (void)startDisplayLink {
@@ -138,6 +169,14 @@ static double const animationDuration = 3;
 - (void)stopDisplayLink {
     [self.displayLink invalidate];
     self.displayLink = nil;
+    self.shouldReset = NO;
+}
+
+- (void)cancelTimer {
+    if (self.timer != nil) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 #pragma mark - Audio Player
@@ -154,6 +193,7 @@ static double const animationDuration = 3;
 }
 
 - (void)playAudio {
+    [self cancelTimer];
     [self.audioPlayer play];
     [self startDisplayLink];
 }
@@ -166,6 +206,13 @@ static double const animationDuration = 3;
 - (void)updatePlayButtonImage {
     UIImage *playImage = self.audioPlayer.isPlaying ? [UIImage imageNamed:@"pauseButtonRound"] : [UIImage imageNamed:@"playButtonRound"];
     [self.playButton setImage:playImage forState:UIControlStateNormal];
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    self.audioPlayer.currentTime = 0;
+    [self updatePlayButtonImage];
+    self.shouldReset = YES;
+    self.timeLabel.text = @"0:00";
 }
 
 @end

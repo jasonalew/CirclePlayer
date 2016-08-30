@@ -28,15 +28,30 @@
                                     <action selector="playButtonWasTapped:" destination="UPL-vw-ao3" eventType="touchUpInside" id="n64-pw-bYc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZm-4w-1Af">
+                                <rect key="frame" x="282" y="418" width="36" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="IeC-Gm-e12"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="SZm-4w-1Af" firstAttribute="centerX" secondItem="1aj-NF-jYo" secondAttribute="centerX" id="88Y-Ed-VIY"/>
                             <constraint firstItem="WcY-ta-V4V" firstAttribute="centerX" secondItem="1aj-NF-jYo" secondAttribute="centerX" id="VS7-3g-MNJ"/>
+                            <constraint firstItem="SZm-4w-1Af" firstAttribute="top" secondItem="WcY-ta-V4V" secondAttribute="bottom" priority="250" constant="88" id="ZJZ-V4-ElC"/>
+                            <constraint firstItem="pjd-um-Mgw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SZm-4w-1Af" secondAttribute="bottom" constant="30" id="i7b-PB-QzP"/>
+                            <constraint firstItem="pjd-um-Mgw" firstAttribute="top" secondItem="SZm-4w-1Af" secondAttribute="bottom" priority="250" constant="161" id="iUb-3c-Ree"/>
                             <constraint firstItem="WcY-ta-V4V" firstAttribute="centerY" secondItem="1aj-NF-jYo" secondAttribute="centerY" id="lbt-z3-DpD"/>
+                            <constraint firstItem="SZm-4w-1Af" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WcY-ta-V4V" secondAttribute="bottom" constant="60" id="nKr-0R-gOA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="playButton" destination="WcY-ta-V4V" id="n6U-u3-MAC"/>
+                        <outlet property="timeLabel" destination="SZm-4w-1Af" id="Mrs-OY-gzw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56p-sa-SC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
