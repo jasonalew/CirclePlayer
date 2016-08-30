@@ -106,7 +106,8 @@ static CGFloat const minLimit = 1.0e-5;
         } else {
             c2 = [JALPoint multiply:p1 value:pow(d3, 2 * alpha)];
             c2 = [JALPoint subtract:c2 point2:[JALPoint multiply:p3 value:pow(d2, 2 * alpha)]];
-            c2 = [JALPoint add:c2 point2:[JALPoint multiply:p2 value:(2 * pow(d3, 2 * alpha) + (3 * pow(d3, alpha) * pow(d2, alpha)) + pow(d2, 2 * alpha))]];
+            c2 = [JALPoint add:c2 point2:[JALPoint multiply:p2 value:(2 * pow(d3, 2 * alpha) +
+                      (3 * pow(d3, alpha) * pow(d2, alpha)) + pow(d2, 2 * alpha))]];
             c2 = [JALPoint multiply:c2 value:1.0 / (3 * pow(d3, alpha) * (pow(d3, alpha) + pow(d2, alpha)))];
         }
         

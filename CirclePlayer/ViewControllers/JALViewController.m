@@ -76,7 +76,8 @@ static double const animationDuration = 2.5;
     if (self.points == nil) {
         self.points = [[NSMutableArray alloc]init];
     }
-    // Get the points from the circleView and add it to the JALBasePoint instance to create reference points.
+    // Get the points from the circleView and add it to the JALBasePoint instance
+    // to create reference points.
     for (int i = 0; i < points.count; i++) {
         CGPoint point = [points[i] CGPointValue];
         JALBasePoint *basePoint = [[JALBasePoint alloc]init];
@@ -143,10 +144,13 @@ static double const animationDuration = 2.5;
     self.progressCircleView.circleShape.path = self.circleView.circleShape.path;
     newPoints = nil;
     [self updateTimeLabel];
-    [self updateProgressStrokeWithTime:self.audioPlayer.currentTime withDuration:self.audioPlayer.duration];
+    [self updateProgressStrokeWithTime:self.audioPlayer.currentTime
+                          withDuration:self.audioPlayer.duration];
 }
 
-- (CGPoint)findIncrementForBasePoint:(CGPoint)basePoint toDestinationPoint:(CGPoint)destinationPoint withDuration:(NSTimeInterval)duration {
+- (CGPoint)findIncrementForBasePoint:(CGPoint)basePoint
+                  toDestinationPoint:(CGPoint)destinationPoint
+                        withDuration:(NSTimeInterval)duration {
     CGPoint diff = [JALPoint subtract:destinationPoint point2:basePoint];
     CGFloat x = diff.x / (duration * 60); // CADisplayLink refresh = 60
     CGFloat y = diff.y / (duration * 60);
@@ -162,17 +166,24 @@ static double const animationDuration = 2.5;
         if (reset) {
             point.destinationPoint = point.basePoint;
         } else {
-            point.destinationPoint = [JALPoint randomPointInCircleWithCenter:point.basePoint radius:randomRadiusLimit];
+            point.destinationPoint = [JALPoint randomPointInCircleWithCenter:point.basePoint
+                                                                      radius:randomRadiusLimit];
         }
         
-        point.incrementBy = [self findIncrementForBasePoint:point.currentPoint toDestinationPoint:point.destinationPoint withDuration:animationDuration];
+        point.incrementBy = [self findIncrementForBasePoint:point.currentPoint
+                                         toDestinationPoint:point.destinationPoint
+                                               withDuration:animationDuration];
     }
 }
 
 - (void)resetCircle {
     [self makeNewDestinationPointsWithReset:YES];
     if (self.timer == nil) {
-        self.timer = [NSTimer timerWithTimeInterval:animationDuration target:self selector:@selector(stopDisplayLink) userInfo:nil repeats:NO];
+        self.timer = [NSTimer timerWithTimeInterval:animationDuration
+                                             target:self
+                                           selector:@selector(stopDisplayLink)
+                                           userInfo:nil
+                                            repeats:NO];
     }
 }
 
@@ -182,7 +193,8 @@ static double const animationDuration = 2.5;
     self.timeLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
 }
 
-- (void)updateProgressStrokeWithTime:(NSTimeInterval)currentTime withDuration:(NSTimeInterval)duration {
+- (void)updateProgressStrokeWithTime:(NSTimeInterval)currentTime
+                        withDuration:(NSTimeInterval)duration {
     CGFloat progress = currentTime/duration;
     self.progressCircleView.circleShape.strokeEnd = MIN(progress, 1.0);
 }
@@ -193,7 +205,8 @@ static double const animationDuration = 2.5;
 }
 
 - (void)showCircleView {
-    [UIView animateWithDuration:1.5 delay:0.5 usingSpringWithDamping:20 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:1.5 delay:0.5 usingSpringWithDamping:20 initialSpringVelocity:10
+                        options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.circleView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         [self.centerCircle removeFromSuperview];
@@ -204,8 +217,10 @@ static double const animationDuration = 2.5;
 
 - (void)startDisplayLink {
     if (self.displayLink == nil) {
-        self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCircle:)];
-        [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+        self.displayLink = [CADisplayLink displayLinkWithTarget:self
+                                                       selector:@selector(updateCircle:)];
+        [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop]
+                               forMode:NSRunLoopCommonModes];
     } else {
         [self pauseDisplayLink:NO];
     }
@@ -230,7 +245,8 @@ static double const animationDuration = 2.5;
 
 #pragma mark - Audio Player
 - (void)setupAudioPlayer {
-    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"shakuhachi" ofType:@"mp3"]];
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"shakuhachi"
+                                                                       ofType:@"mp3"]];
     NSError *error;
     self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
     if (error) {
@@ -253,7 +269,8 @@ static double const animationDuration = 2.5;
 }
 
 - (void)updatePlayButtonImage {
-    UIImage *playImage = self.audioPlayer.isPlaying ? [UIImage imageNamed:@"pauseButtonRound"] : [UIImage imageNamed:@"playButtonRound"];
+    NSString *imageName = self.audioPlayer.isPlaying ? @"pauseButtonRound" : @"playButtonRound";
+    UIImage *playImage =  [UIImage imageNamed: imageName];
     [self.playButton setImage:playImage forState:UIControlStateNormal];
 }
 
