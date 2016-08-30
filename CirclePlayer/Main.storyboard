@@ -28,8 +28,8 @@
                                     <action selector="playButtonWasTapped:" destination="UPL-vw-ao3" eventType="touchUpInside" id="n64-pw-bYc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZm-4w-1Af">
-                                <rect key="frame" x="282" y="418" width="36" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZm-4w-1Af">
+                                <rect key="frame" x="277" y="418" width="46" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="IeC-Gm-e12"/>
                                 </constraints>

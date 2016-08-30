@@ -22,6 +22,7 @@ static double const animationDuration = 3;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic) NSTimeInterval animateStartTime;
 @property (nonatomic, strong) JALCircleView *circleView;
+@property (nonatomic, strong) JALCircleView *progressCircleView;
 @property (nonatomic) BOOL shouldReset;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) AVAudioPlayer * audioPlayer;
@@ -38,13 +39,7 @@ static double const animationDuration = 3;
     self.animateStartTime = 0;
     
     // Add the circle view
-    CGRect circleRect = CGRectMake(CGRectGetMidX(self.view.frame) - radius,
-                                   CGRectGetMidY(self.view.frame) - radius,
-                                   radius * 2.0,
-                                   radius * 2.0);
-    self.circleView = [[JALCircleView alloc]initWithFrame:circleRect];
-    [self.view addSubview:self.circleView];
-    [self loadPoints:self.circleView.points];
+    [self setupCircleViews];
     [self setupPlayButton];
     [self setupAudioPlayer];
     self.shouldReset = NO;
@@ -85,6 +80,21 @@ static double const animationDuration = 3;
     }
 }
 
+- (void) setupCircleViews {
+    CGRect circleRect = CGRectMake(CGRectGetMidX(self.view.frame) - radius,
+                                   CGRectGetMidY(self.view.frame) - radius,
+                                   radius * 2.0,
+                                   radius * 2.0);
+    self.circleView = [[JALCircleView alloc]initWithFrame:circleRect];
+    [self.view addSubview:self.circleView];
+    self.progressCircleView = [[JALCircleView alloc]initWithFrame:circleRect];
+    self.progressCircleView.circleShape.fillColor = [[UIColor clearColor]CGColor];
+    self.progressCircleView.circleShape.strokeColor = [[UIColor jal_cream]CGColor];
+    self.progressCircleView.circleShape.strokeEnd = 0;
+    [self.view addSubview:self.progressCircleView];
+    [self loadPoints:self.circleView.points];
+}
+
 #pragma mark - Actions
 - (IBAction)playButtonWasTapped:(id)sender {
     if (self.audioPlayer.isPlaying) {
@@ -113,8 +123,10 @@ static double const animationDuration = 3;
     }
     
     self.circleView.circleShape.path = [[self.circleView smoothPathWithPoints:newPoints]CGPath];
+    self.progressCircleView.circleShape.path = self.circleView.circleShape.path;
     newPoints = nil;
     [self updateTimeLabel];
+    [self updateProgressStrokeWithTime:self.audioPlayer.currentTime withDuration:self.audioPlayer.duration];
 }
 
 - (CGPoint)findIncrementForBasePoint:(CGPoint)basePoint toDestinationPoint:(CGPoint)destinationPoint withDuration:(NSTimeInterval)duration {
@@ -150,7 +162,12 @@ static double const animationDuration = 3;
 - (void)updateTimeLabel {
     int minutes = (int)self.audioPlayer.currentTime/60;
     int seconds = (int)self.audioPlayer.currentTime % 60;
-    self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
+    self.timeLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+}
+
+- (void)updateProgressStrokeWithTime:(NSTimeInterval)currentTime withDuration:(NSTimeInterval)duration {
+    CGFloat progress = currentTime/duration;
+    self.progressCircleView.circleShape.strokeEnd = MIN(progress, 1.0);
 }
 
 - (void)startDisplayLink {
@@ -213,6 +230,7 @@ static double const animationDuration = 3;
     [self updatePlayButtonImage];
     self.shouldReset = YES;
     self.timeLabel.text = @"0:00";
+    self.progressCircleView.circleShape.strokeEnd = 0;
 }
 
 @end

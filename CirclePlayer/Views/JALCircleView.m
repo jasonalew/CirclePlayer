@@ -68,6 +68,7 @@ static CGFloat const minLimit = 1.0e-5;
 
 - (UIBezierPath *)smoothPathWithPoints:(NSArray *) points {
     // Shout out to John Fisher for the basis of the code for this function
+    // https://spin.atomicobject.com/2014/05/28/ios-interpolating-points/
     if (points.count < 4) { return nil; };
     int startIndex = 0;
     CGFloat alpha = 1;
