@@ -11,10 +11,11 @@
 #import "UIColor+JALCustom.h"
 #import "JALBasePoint.h"
 #import "JALPoint.h"
+#import "JALConstants.h"
 
 static CGFloat const radius = 56;
 static CGFloat const randomRadiusLimit = 6;
-static double const animationDuration = 3;
+static double const animationDuration = 2.5;
 
 @interface JALViewController ()
 
@@ -23,6 +24,7 @@ static double const animationDuration = 3;
 @property (nonatomic) NSTimeInterval animateStartTime;
 @property (nonatomic, strong) JALCircleView *circleView;
 @property (nonatomic, strong) JALCircleView *progressCircleView;
+@property (nonatomic, strong) JALCircleView *centerCircle;
 @property (nonatomic) BOOL shouldReset;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) AVAudioPlayer * audioPlayer;
@@ -52,6 +54,7 @@ static double const animationDuration = 3;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self showCircleView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -59,6 +62,8 @@ static double const animationDuration = 3;
     [self stopDisplayLink];
     [self cancelTimer];
 }
+
+#pragma mark - Setup
 
 - (void)setupPlayButton {
     // Make sure the play button is on top
@@ -71,6 +76,7 @@ static double const animationDuration = 3;
     if (self.points == nil) {
         self.points = [[NSMutableArray alloc]init];
     }
+    // Get the points from the circleView and add it to the JALBasePoint instance to create reference points.
     for (int i = 0; i < points.count; i++) {
         CGPoint point = [points[i] CGPointValue];
         JALBasePoint *basePoint = [[JALBasePoint alloc]init];
@@ -86,12 +92,23 @@ static double const animationDuration = 3;
                                    radius * 2.0,
                                    radius * 2.0);
     self.circleView = [[JALCircleView alloc]initWithFrame:circleRect];
+    [self scaleView:self.circleView withScale:0.5];
     [self.view addSubview:self.circleView];
+    
+    CGRect centerRect = CGRectMake(CGRectGetMidX(self.view.frame) - radius + kLineWidth/2,
+                                   CGRectGetMidY(self.view.frame) - radius + kLineWidth/2,
+                                   radius * 2.0 - kLineWidth,
+                                   radius * 2.0 - kLineWidth);
+    self.centerCircle = [[JALCircleView alloc]initWithFrame:centerRect];
+    self.centerCircle.strokeColor = [UIColor clearColor];
+    [self.view addSubview:self.centerCircle];
+    
     self.progressCircleView = [[JALCircleView alloc]initWithFrame:circleRect];
     self.progressCircleView.circleShape.fillColor = [[UIColor clearColor]CGColor];
     self.progressCircleView.circleShape.strokeColor = [[UIColor jal_cream]CGColor];
     self.progressCircleView.circleShape.strokeEnd = 0;
     [self.view addSubview:self.progressCircleView];
+    
     [self loadPoints:self.circleView.points];
 }
 
@@ -169,6 +186,21 @@ static double const animationDuration = 3;
     CGFloat progress = currentTime/duration;
     self.progressCircleView.circleShape.strokeEnd = MIN(progress, 1.0);
 }
+
+- (void)scaleView:(UIView *)aView withScale:(CGFloat)scale {
+    CGAffineTransform transform = CGAffineTransformScale(aView.transform, scale, scale);
+    aView.transform = transform;
+}
+
+- (void)showCircleView {
+    [UIView animateWithDuration:1.5 delay:0.5 usingSpringWithDamping:20 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.circleView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        [self.centerCircle removeFromSuperview];
+    }];
+}
+
+#pragma mark - Display Link
 
 - (void)startDisplayLink {
     if (self.displayLink == nil) {
