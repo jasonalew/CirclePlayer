@@ -7,6 +7,8 @@
 //
 
 #import "JALConstants.h"
+CGFloat const kLineWidth = 14;
+int const kNumPoints = 9;
 
 @implementation JALConstants
 

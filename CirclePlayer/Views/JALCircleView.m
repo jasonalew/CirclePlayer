@@ -9,6 +9,7 @@
 #import "JALCircleView.h"
 #import "UIColor+JALCustom.h"
 #import "JALPoint.h"
+#import "JALConstants.h"
 
 @interface JALCircleView()
 
@@ -38,9 +39,9 @@ static CGFloat const minLimit = 1.0e-5;
     self.circleShape = [[CAShapeLayer alloc]init];
     self.fillColor = [UIColor whiteColor];
     self.strokeColor = [UIColor jal_ltOrange];
-    self.lineWidth = 14.0;
+    self.lineWidth = kLineWidth;
     self.radius = CGRectGetWidth(self.frame)/2.0;
-    self.numPoints = 9;
+    self.numPoints = kNumPoints;
     [self makeCirclePath];
     self.userInteractionEnabled = NO;
 }

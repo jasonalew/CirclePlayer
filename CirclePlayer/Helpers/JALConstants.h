@@ -6,9 +6,10 @@
 //  Copyright © 2016 Jason Lew. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+extern CGFloat const kLineWidth;
+extern int const kNumPoints;
 
 @interface JALConstants : NSObject
-
 
 @end
